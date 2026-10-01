@@ -1,0 +1,61 @@
+{
+  "_comment": "IOC feed for bluehammer_defender_audit. All indicators are transcribed from the Huntress 'nightmare-eclipse-intrusion' analysis (source_url), each with a citation. IMPORTANT: Huntress published NO file hash for the BlueHammer binary itself (FunnyApp.exe). The only hash available is for BeigeBurrow, the co-occurring tunnel agent, and is labelled as such below. No BlueHammer hash is fabricated. The module matches on path_regexes and file_hashes_sha256; the c2/source_ips fields are network context for the writeup and are NOT matched by the module.",
+  "cve": "CVE-2026-33825",
+  "source": "Huntress — nightmare-eclipse-intrusion analysis",
+  "source_url": "https://www.huntress.com/blog/nightmare-eclipse-intrusion",
+  "defender_signature": "Exploit:Win32/DfndrPEBluHmr.BZ",
+  "event_ids": [1116, 1117],
+  "path_regexes": [
+    {
+      "pattern": "\\\\Users\\\\[^\\\\]+\\\\Pictures\\\\[^\\\\]+\\\\[^\\\\]+\\.exe$",
+      "desc": "lone EXE in a nested subfolder under a user's Pictures dir (BlueHammer drop pattern)",
+      "confidence": "behavioral",
+      "citation": "Huntress analysis - drop-path pattern"
+    },
+    {
+      "pattern": "\\\\Users\\\\[^\\\\]+\\\\Downloads\\\\[^\\\\]+\\\\[^\\\\]+\\.exe$",
+      "desc": "lone EXE in a nested subfolder under a user's Downloads dir (observed drop pattern)",
+      "confidence": "behavioral",
+      "citation": "Huntress analysis - drop-path pattern"
+    },
+    {
+      "pattern": "\\\\FunnyApp\\.exe$",
+      "desc": "observed BlueHammer filename (low confidence - trivially renamed)",
+      "confidence": "filename",
+      "citation": "Huntress analysis - IOC list (BlueHammer)"
+    },
+    {
+      "pattern": "\\\\RedSun\\.exe$",
+      "desc": "observed RedSun filename (associated tooling; low confidence)",
+      "confidence": "filename",
+      "citation": "Huntress analysis - IOC list (RedSun)"
+    },
+    {
+      "pattern": "\\\\undef\\.exe$",
+      "desc": "observed UnDefend filename (associated tooling; low confidence)",
+      "confidence": "filename",
+      "citation": "Huntress analysis - IOC list (UnDefend)"
+    }
+  ],
+  "file_hashes_sha256": [
+    {
+      "value": "a2b6c7a9c4490df70de3cdbfa5fc801a3e1cf6a872749259487e354de2876b7c",
+      "desc": "BeigeBurrow tunnel agent - ASSOCIATED tooling from the same intrusion, NOT the BlueHammer binary",
+      "confidence": "hash",
+      "citation": "Huntress analysis - IOC hash table (BeigeBurrow)"
+    }
+  ],
+  "c2": [
+    {
+      "value": "staybud.dpdns.org",
+      "port": 443,
+      "desc": "BeigeBurrow C2 destination (network context; not matched by the module)",
+      "citation": "Huntress analysis - network IOC table"
+    }
+  ],
+  "source_ips": [
+    { "value": "78.29.48.29", "desc": "unauthorized FortiGate SSL VPN source (Russia)", "citation": "Huntress analysis" },
+    { "value": "212.232.23.69", "desc": "unauthorized FortiGate SSL VPN source (Singapore)", "citation": "Huntress analysis" },
+    { "value": "179.43.140.214", "desc": "unauthorized FortiGate SSL VPN source (Switzerland)", "citation": "Huntress analysis" }
+  ]
+}

@@ -1,0 +1,9 @@
+# MSF loot / local artifacts
+*.log
+loot/
+tmp/
+*.swp
+.DS_Store
+# never commit any offensive PoC / binaries
+*.exe
+poc/
