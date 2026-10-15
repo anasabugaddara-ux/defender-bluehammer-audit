@@ -224,7 +224,7 @@ class MetasploitModule < Msf::Post
   def version_below?(installed, fixed)
     return false if installed.to_s.empty?
 
-    Gem::Version.new(installed) < Gem::Version.new(fixed)
+    Rex::Version.new(installed) < Rex::Version.new(fixed)
   rescue ArgumentError
     print_warning("Could not compare version '#{installed}' to '#{fixed}'.")
     false

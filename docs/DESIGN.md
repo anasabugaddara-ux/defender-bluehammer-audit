@@ -55,7 +55,7 @@ Three independent sources are read and compared:
 
 Each value is reduced to its dotted-numeric core by `normalize_version`
 (e.g. `4.18.26050.15-0` → `4.18.26050.15`) **before** comparison, so a folder-revision suffix is
-not mistaken for a genuine version disagreement. Comparison uses `Gem::Version`. A real
+not mistaken for a genuine version disagreement. Comparison uses `Rex::Version`. A real
 disagreement across normalised sources is reported as a possible tampering / partial-update
 indicator.
 
